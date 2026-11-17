@@ -49,3 +49,4 @@ next-env.d.ts
 # ??????
 *.log
 pw-install.ps1
+.vercel

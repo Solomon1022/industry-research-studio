@@ -159,7 +159,7 @@ export default function Home() {
         <section className="card" style={{ marginTop: 28 }}>
           <h2 className="section-title">方法论：六维背调框架</h2>
           <p className="section-desc">
-            本产品将开源技能 <a href="https://github.com/Solomon1022/industry-research" target="_blank" rel="noreferrer">industry-research</a> 的工作流产品化：每条数据强制绑定来源，口径显式声明，预测值强制标 E，导出前通过保真校验。
+            本产品将自研六维背调工作流（industry-research 技能）产品化：每条数据强制绑定来源，口径显式声明，预测值强制标 E，导出前通过保真校验。
           </p>
           <div className="dim-tabs" style={{ marginBottom: 0 }}>
             {DIMENSIONS.map((d) => (
