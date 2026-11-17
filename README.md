@@ -4,7 +4,7 @@
 
 一个**本地优先**的六维行业背调工作台：结构化录入数据点，每条数据**强制绑定来源**并**显式声明口径**，自动交叉校验，一键生成可视化图表与可导出的研究报告。
 
-- **线上预览**：（部署后更新）
+- **线上预览**：https://industry-research-studio.vercel.app
 - **方法论来源**：开源技能 [industry-research](https://github.com/Solomon1022/industry-research)（六维背调工作流）的产品化实现
 - **许可证**：MIT
 
