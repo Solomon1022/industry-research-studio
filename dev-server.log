@@ -1,0 +1,172 @@
+
+> industry-research-studio@0.1.0 dev
+> next dev --port 3100
+
+▲ Next.js 16.4.6 (Turbopack)
+- Local:         http://localhost:3100
+- Network:       http://10.253.156.245:3100
+✓ Ready in 1261ms
+✓ Running next.config.ts took 221ms
+
+ GET / 200 in 588ms (next.js: 297ms, application-code: 291ms)
+ GET / 200 in 71ms (next.js: 4ms, application-code: 67ms)
+ GET / 200 in 56ms (next.js: 4ms, application-code: 52ms)
+ GET / 200 in 52ms (next.js: 3ms, application-code: 49ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET / 200 in 47ms (next.js: 4ms, application-code: 43ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 1536ms (next.js: 1485ms, application-code: 51ms)
+ GET / 200 in 48ms (next.js: 3ms, application-code: 45ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 105ms (next.js: 59ms, application-code: 46ms)
+ GET / 200 in 46ms (next.js: 2ms, application-code: 44ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 36ms (next.js: 3ms, application-code: 32ms)
+ GET / 200 in 43ms (next.js: 1.9ms, application-code: 41ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 105ms (next.js: 66ms, application-code: 39ms)
+ GET / 200 in 53ms (next.js: 2.0ms, application-code: 51ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 37ms (next.js: 3ms, application-code: 34ms)
+ GET /projects/seed-live-commerce/charts 200 in 1472ms (next.js: 1428ms, application-code: 44ms)
+ GET / 200 in 51ms (next.js: 3ms, application-code: 48ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 237ms (next.js: 183ms, application-code: 54ms)
+ GET /projects/seed-live-commerce/report 200 in 1380ms (next.js: 1340ms, application-code: 40ms)
+ GET / 200 in 56ms (next.js: 1.8ms, application-code: 54ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 127ms (next.js: 87ms, application-code: 40ms)
+ GET /projects/seed-live-commerce/report 200 in 104ms (next.js: 74ms, application-code: 31ms)
+ GET / 200 in 35ms (next.js: 1.3ms, application-code: 33ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 48ms (next.js: 4ms, application-code: 44ms)
+ GET / 200 in 45ms (next.js: 3ms, application-code: 42ms)
+ GET / 200 in 60ms (next.js: 1.5ms, application-code: 59ms)
+ GET / 200 in 46ms (next.js: 1.6ms, application-code: 44ms)
+ GET / 200 in 43ms (next.js: 2.0ms, application-code: 41ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 90ms (next.js: 59ms, application-code: 31ms)
+ GET / 200 in 46ms (next.js: 1.6ms, application-code: 45ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 37ms (next.js: 3ms, application-code: 34ms)
+ GET / 200 in 43ms (next.js: 1.7ms, application-code: 41ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 101ms (next.js: 70ms, application-code: 31ms)
+ GET / 200 in 44ms (next.js: 1.4ms, application-code: 43ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 37ms (next.js: 2ms, application-code: 34ms)
+ GET / 200 in 53ms (next.js: 2ms, application-code: 51ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 123ms (next.js: 85ms, application-code: 38ms)
+ GET /projects/seed-live-commerce/charts 200 in 114ms (next.js: 72ms, application-code: 41ms)
+ GET / 200 in 47ms (next.js: 1.9ms, application-code: 45ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 102ms (next.js: 68ms, application-code: 34ms)
+ GET /projects/seed-live-commerce/report 200 in 122ms (next.js: 75ms, application-code: 47ms)
+ GET / 200 in 50ms (next.js: 2ms, application-code: 48ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 35ms (next.js: 3ms, application-code: 32ms)
+ GET /projects/seed-live-commerce/report 200 in 40ms (next.js: 3ms, application-code: 38ms)
+ GET / 200 in 47ms (next.js: 2ms, application-code: 45ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 105ms (next.js: 70ms, application-code: 36ms)
+ GET /projects/seed-live-commerce/sources 200 in 101ms
+ GET / 200 in 32ms (next.js: 1.6ms, application-code: 31ms)
+ GET / 200 in 34ms (next.js: 1.1ms, application-code: 32ms)
+ GET / 200 in 44ms (next.js: 2ms, application-code: 42ms)
+ GET / 200 in 48ms (next.js: 2ms, application-code: 46ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 145ms (next.js: 81ms, application-code: 63ms)
+ GET / 200 in 38ms (next.js: 1.6ms, application-code: 36ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 39ms (next.js: 3ms, application-code: 37ms)
+ GET / 200 in 41ms (next.js: 1.3ms, application-code: 39ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 106ms (next.js: 68ms, application-code: 37ms)
+ GET / 200 in 44ms (next.js: 2ms, application-code: 41ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 31ms (next.js: 3ms, application-code: 28ms)
+ GET / 200 in 45ms (next.js: 2ms, application-code: 43ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 100ms (next.js: 64ms, application-code: 36ms)
+ GET /projects/seed-live-commerce/charts 200 in 92ms (next.js: 62ms, application-code: 30ms)
+ GET / 200 in 58ms (next.js: 1.8ms, application-code: 57ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 109ms (next.js: 66ms, application-code: 43ms)
+ GET /projects/seed-live-commerce/report 200 in 93ms (next.js: 59ms, application-code: 34ms)
+ GET / 200 in 54ms (next.js: 1.9ms, application-code: 52ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 35ms (next.js: 3ms, application-code: 32ms)
+ GET /projects/seed-live-commerce/report 200 in 35ms (next.js: 3ms, application-code: 32ms)
+ GET / 200 in 45ms (next.js: 1.9ms, application-code: 43ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 99ms (next.js: 64ms, application-code: 35ms)
+ GET /projects/seed-live-commerce/sources 200 in 105ms (next.js: 62ms, application-code: 43ms)
+ GET / 200 in 33ms (next.js: 1.6ms, application-code: 32ms)
+ GET / 200 in 27ms (next.js: 1.2ms, application-code: 26ms)
+ GET / 200 in 33ms (next.js: 1.3ms, application-code: 32ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 98ms (next.js: 63ms, application-code: 35ms)
+ GET /projects/seed-live-commerce/charts 200 in 93ms (next.js: 58ms, application-code: 35ms)
+ GET /projects/seed-live-commerce/report 200 in 72ms (next.js: 47ms, application-code: 25ms)
+ GET / 200 in 34ms (next.js: 1.7ms, application-code: 33ms)
+ GET / 200 in 30ms (next.js: 1.2ms, application-code: 29ms)
+ GET / 200 in 28ms (next.js: 1.2ms, application-code: 27ms)
+[browser] ⨯ unhandledRejection: ConstraintError: Key already exists in the object store.
+ ConstraintError: Key already exists in the object store.
+
+ GET /projects/seed-live-commerce 200 in 86ms (next.js: 59ms, application-code: 27ms)
+ GET /projects/seed-live-commerce/charts 200 in 114ms (next.js: 69ms, application-code: 45ms)
+ GET /projects/seed-live-commerce/report 200 in 89ms (next.js: 56ms, application-code: 33ms)

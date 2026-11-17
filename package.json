@@ -1,0 +1,39 @@
+{
+  "name": "industry-research-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "本地优先的六维行业背调工作台：来源强制绑定、口径显式声明、预测标注、可校验可导出的研究报告",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "dexie": "^4.4.7",
+    "dexie-react-hooks": "^4.4.0",
+    "echarts": "^6.1.0",
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@tailwindcss/turbopack": "4.3.3",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "^5.1.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.6",
+    "fake-indexeddb": "^6.2.8",
+    "jsdom": "^31.0.1",
+    "tailwindcss": "4.3.3",
+    "typescript": "^5",
+    "vitest": "^5.1.0"
+  }
+}
