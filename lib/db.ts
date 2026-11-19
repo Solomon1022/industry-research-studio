@@ -7,12 +7,15 @@
 
 import Dexie, { type EntityTable } from "dexie";
 import type { DataPoint, Project, Source } from "./types";
+import type { EvidenceRecord, QuestionnaireDataset } from "./research-types";
 import { seedDataPoints, seedProject, seedSources, SEED_PROJECT_ID } from "./seed-data";
 
 export class ResearchDB extends Dexie {
   projects!: EntityTable<Project, "id">;
   sources!: EntityTable<Source, "id">;
   dataPoints!: EntityTable<DataPoint, "id">;
+  evidence!: EntityTable<EvidenceRecord, "id">;
+  questionnaires!: EntityTable<QuestionnaireDataset, "id">;
 
   constructor(name = "industry-research-studio") {
     super(name);
@@ -21,21 +24,42 @@ export class ResearchDB extends Dexie {
       sources: "id, name, tier, updatedAt",
       dataPoints: "id, projectId, dimension, metric, sourceId, period, updatedAt",
     });
+    // 仅新增表，不改动 v1 数据；旧版打开后自动原地升级。
+    this.version(2).stores({
+      projects: "id, name, status, updatedAt",
+      sources: "id, name, tier, updatedAt",
+      dataPoints: "id, projectId, dimension, metric, sourceId, period, updatedAt",
+      evidence: "id, projectId, sourceId, status, acquiredAt",
+      questionnaires: "id, projectId, importedAt",
+    });
   }
 }
 
 export const db = new ResearchDB();
 
-/** 首次启动时注入示例数据集（幂等：已存在则跳过） */
-export async function ensureSeedData(database: ResearchDB = db): Promise<boolean> {
-  const existing = await database.projects.get(SEED_PROJECT_ID);
-  if (existing) return false;
-  await database.transaction("rw", database.projects, database.sources, database.dataPoints, async () => {
-    await database.projects.add(seedProject);
-    await database.sources.bulkAdd(seedSources);
-    await database.dataPoints.bulkAdd(seedDataPoints);
+/** 首次启动时注入示例数据集（Strict Mode、多标签页下均保持幂等） */
+let sharedSeedPromise: Promise<boolean> | null = null;
+
+async function writeSeedData(database: ResearchDB): Promise<boolean> {
+  return database.transaction("rw", database.projects, database.sources, database.dataPoints, async () => {
+    const existing = await database.projects.get(SEED_PROJECT_ID);
+    if (existing) return false;
+    await database.projects.put(seedProject);
+    await database.sources.bulkPut(seedSources);
+    await database.dataPoints.bulkPut(seedDataPoints);
+    return true;
   });
-  return true;
+}
+
+export async function ensureSeedData(database: ResearchDB = db): Promise<boolean> {
+  if (database !== db) return writeSeedData(database);
+  if (!sharedSeedPromise) {
+    sharedSeedPromise = writeSeedData(database).catch((error) => {
+      sharedSeedPromise = null;
+      throw error;
+    });
+  }
+  return sharedSeedPromise;
 }
 
 // ============ Project CRUD ============
@@ -68,8 +92,10 @@ export async function updateProject(
 
 /** 删除项目及其全部关联数据 */
 export async function deleteProject(id: string, database: ResearchDB = db): Promise<void> {
-  await database.transaction("rw", database.projects, database.dataPoints, async () => {
+  await database.transaction("rw", [database.projects, database.dataPoints, database.evidence, database.questionnaires], async () => {
     await database.dataPoints.where("projectId").equals(id).delete();
+    await database.evidence.where("projectId").equals(id).delete();
+    await database.questionnaires.where("projectId").equals(id).delete();
     await database.projects.delete(id);
   });
 }
@@ -95,9 +121,15 @@ export async function duplicateProject(id: string, database: ResearchDB = db): P
     createdAt: now,
     updatedAt: now,
   }));
-  await database.transaction("rw", database.projects, database.dataPoints, async () => {
+  const copiedEvidence = (await database.evidence.where("projectId").equals(id).toArray())
+    .map((item) => ({ ...item, id: crypto.randomUUID(), projectId: copy.id }));
+  const copiedQuestionnaires = (await database.questionnaires.where("projectId").equals(id).toArray())
+    .map((item) => ({ ...item, id: crypto.randomUUID(), projectId: copy.id }));
+  await database.transaction("rw", [database.projects, database.dataPoints, database.evidence, database.questionnaires], async () => {
     await database.projects.add(copy);
     await database.dataPoints.bulkAdd(copiedPoints);
+    await database.evidence.bulkAdd(copiedEvidence);
+    await database.questionnaires.bulkAdd(copiedQuestionnaires);
   });
   return copy;
 }
@@ -173,4 +205,55 @@ export async function projectStats(
   const points = await database.dataPoints.where("projectId").equals(projectId).toArray();
   const usedSourceIds = [...new Set(points.map((p) => p.sourceId).filter(Boolean))];
   return { dataPointCount: points.length, usedSourceIds };
+}
+
+// ============ Evidence / Questionnaire ============
+
+export async function saveEvidence(
+  input: Omit<EvidenceRecord, "id" | "acquiredAt" | "status"> & { id?: string; status?: EvidenceRecord["status"] },
+  database: ResearchDB = db,
+): Promise<EvidenceRecord> {
+  const existing = input.id ? await database.evidence.get(input.id) : undefined;
+  const record: EvidenceRecord = {
+    ...input,
+    id: input.id ?? crypto.randomUUID(),
+    acquiredAt: existing?.acquiredAt ?? Date.now(),
+    status: input.status ?? existing?.status ?? "inbox",
+  };
+  await database.evidence.put(record);
+  return record;
+}
+
+export async function listEvidence(projectId: string, database: ResearchDB = db): Promise<EvidenceRecord[]> {
+  return database.evidence.where("projectId").equals(projectId).reverse().sortBy("acquiredAt");
+}
+
+export async function deleteEvidence(id: string, database: ResearchDB = db): Promise<void> {
+  await database.evidence.delete(id);
+}
+
+export async function saveQuestionnaire(
+  input: Omit<QuestionnaireDataset, "id" | "importedAt"> & { id?: string },
+  database: ResearchDB = db,
+): Promise<QuestionnaireDataset> {
+  const existing = input.id ? await database.questionnaires.get(input.id) : undefined;
+  const dataset: QuestionnaireDataset = {
+    ...input,
+    id: input.id ?? crypto.randomUUID(),
+    importedAt: existing?.importedAt ?? Date.now(),
+  };
+  await database.questionnaires.put(dataset);
+  return dataset;
+}
+
+export async function updateQuestionnaire(
+  id: string,
+  patch: Partial<QuestionnaireDataset>,
+  database: ResearchDB = db,
+): Promise<void> {
+  await database.questionnaires.update(id, { ...patch, id });
+}
+
+export async function listQuestionnaires(projectId: string, database: ResearchDB = db): Promise<QuestionnaireDataset[]> {
+  return database.questionnaires.where("projectId").equals(projectId).reverse().sortBy("importedAt");
 }

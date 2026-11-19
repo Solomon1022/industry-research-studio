@@ -14,10 +14,14 @@ export function Topbar({ projectId, projectName }: TopbarProps) {
   const pathname = usePathname();
   const tabs = projectId
     ? [
-        { href: `/projects/${projectId}`, label: "数据录入" },
-        { href: `/projects/${projectId}/sources`, label: "来源管理" },
-        { href: `/projects/${projectId}/charts`, label: "可视化" },
-        { href: `/projects/${projectId}/report`, label: "报告导出" },
+        { href: `/projects/${projectId}/research`, label: "研究中心" },
+        { href: `/projects/${projectId}/thesis`, label: "论文数据" },
+        { href: `/projects/${projectId}/survey`, label: "问卷分析" },
+        { href: `/projects/${projectId}`, label: "数据管理" },
+        { href: `/projects/${projectId}/sources`, label: "来源" },
+        { href: `/projects/${projectId}/charts`, label: "图表" },
+        { href: `/projects/${projectId}/export`, label: "完整导出" },
+        { href: `/projects/${projectId}/settings`, label: "模型设置" },
       ]
     : [];
 

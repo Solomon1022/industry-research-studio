@@ -68,7 +68,7 @@ test.describe("行业研究工作台核心流程", () => {
   test("可视化页：自动生成趋势图与对比图", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("link", { name: "进入工作台" }).first().click();
-    await page.getByRole("link", { name: "可视化" }).click();
+    await page.getByRole("link", { name: "图表", exact: true }).click();
     // 市场规模趋势图（含预测徽标）与双11对比图
     await expect(page.getByText("直播电商市场规模（亿元）")).toBeVisible({ timeout: 10000 });
     await expect(page.locator("canvas").first()).toBeVisible();
@@ -78,7 +78,8 @@ test.describe("行业研究工作台核心流程", () => {
   test("报告页：校验通过可导出，概览统计正确", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("link", { name: "进入工作台" }).first().click();
-    await page.getByRole("link", { name: "报告导出" }).click();
+    await expect(page).toHaveURL(/\/projects\/[^/]+$/);
+    await page.goto(`${page.url()}/report`);
     await expect(page.getByText("✓ 校验通过，可以导出")).toBeVisible({ timeout: 10000 });
     await expect(page.getByText(/全报告共/).first()).toBeVisible();
     // 导出 Markdown 触发下载
@@ -92,7 +93,8 @@ test.describe("行业研究工作台核心流程", () => {
   test("Markdown 预览含来源与免责声明", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("link", { name: "进入工作台" }).first().click();
-    await page.getByRole("link", { name: "报告导出" }).click();
+    await expect(page).toHaveURL(/\/projects\/[^/]+$/);
+    await page.goto(`${page.url()}/report`);
     await page.getByRole("button", { name: "Markdown 预览" }).click();
     await expect(page.getByText("## 数据来源")).toBeVisible();
     await expect(page.getByText(/不构成投资建议/)).toBeVisible();
@@ -101,7 +103,7 @@ test.describe("行业研究工作台核心流程", () => {
   test("来源管理：展示分级与被引用计数，防误删", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("link", { name: "进入工作台" }).first().click();
-    await page.getByRole("link", { name: "来源管理" }).click();
+    await page.getByRole("link", { name: "来源", exact: true }).click();
     await expect(page).toHaveURL(/\/projects\/[^/]+\/sources$/);
     await expect(page.getByRole("row", { name: /网经社电数宝/ })).toBeVisible();
     await expect(page.getByRole("row", { name: /QuestMobile/ })).toBeVisible();

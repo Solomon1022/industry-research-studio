@@ -115,6 +115,10 @@ export interface Project {
   id: string;
   /** 研究对象名，如「直播电商与 AI 虚拟主播」 */
   name: string;
+  /** 项目类型；旧项目缺省视为 industry */
+  kind?: "industry" | "thesis";
+  /** 论文模式的变量与研究问题配置 */
+  thesis?: import("./research-types").ThesisConfig;
   /** 行业/赛道边界描述 */
   industry: string;
   /** 地域范围，如「中国」 */

@@ -1,25 +1,47 @@
 {
   "name": "industry-research-studio",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "本地优先的六维行业背调工作台：来源强制绑定、口径显式声明、预测标注、可校验可导出的研究报告",
+  "description": "主动检索、可溯源选数、真实问卷统计与跨平台桌面行业研究工作台",
   "license": "MIT",
+  "main": "dist-electron/main.js",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && tsup",
+    "build:web": "next build",
+    "build:electron": "tsup",
     "start": "next start",
+    "desktop:dev": "npm run build:electron && concurrently -k \"next dev -p 3100\" \"wait-on http://127.0.0.1:3100 && cross-env ELECTRON_DEV_URL=http://127.0.0.1:3100 electron .\"",
+    "desktop:pack": "npm run build && electron-builder --dir",
+    "desktop:dist": "npm run build && electron-builder",
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:electron": "npm run build:electron && playwright test --config=playwright.electron.config.ts"
   },
   "dependencies": {
+    "@mozilla/readability": "^0.6.0",
+    "chardet": "^2.2.0",
+    "cheerio": "^1.2.0",
+    "csv-parse": "^7.0.3",
+    "datareader-spss": "^0.2.1",
     "dexie": "^4.4.7",
     "dexie-react-hooks": "^4.4.0",
+    "docx": "^9.15.4",
     "echarts": "^6.1.0",
+    "exceljs": "^4.4.0",
+    "iconv-lite": "^0.7.3",
+    "jstat": "^1.9.6",
+    "jszip": "^3.10.2",
+    "linkedom": "^0.18.15",
     "next": "16.4.6",
+    "pdfjs-dist": "^6.5.438",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "robots-parser": "^3.0.1",
+    "simple-statistics": "^8.0.0",
+    "undici": "^8.12.4"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.1",
@@ -28,12 +50,19 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitest/coverage-v8": "^5.1.0",
+    "concurrently": "^10.0.7",
+    "cross-env": "^10.1.0",
+    "electron": "^45.4.1",
+    "electron-builder": "^26.18.0",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
     "fake-indexeddb": "^6.2.8",
     "jsdom": "^31.0.1",
+    "pdf-lib": "^1.17.1",
     "tailwindcss": "4.3.3",
+    "tsup": "^9.0.0",
     "typescript": "^5",
-    "vitest": "^5.1.0"
+    "vitest": "^5.1.0",
+    "wait-on": "^9.5.1"
   }
 }

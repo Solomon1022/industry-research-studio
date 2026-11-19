@@ -50,3 +50,9 @@ next-env.d.ts
 *.log
 pw-install.ps1
 .vercel
+
+# Electron 构建产物与本地密钥
+/dist-electron/
+/release/
+/research-settings.json
+*.blockmap

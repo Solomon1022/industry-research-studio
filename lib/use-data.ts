@@ -53,6 +53,22 @@ export function useSources() {
   return { sources, loading: sources === undefined };
 }
 
+export function useEvidence(projectId: string) {
+  const evidence = useLiveQuery(
+    () => db.evidence.where("projectId").equals(projectId).reverse().sortBy("acquiredAt"),
+    [projectId]
+  );
+  return { evidence, loading: evidence === undefined };
+}
+
+export function useQuestionnaires(projectId: string) {
+  const datasets = useLiveQuery(
+    () => db.questionnaires.where("projectId").equals(projectId).reverse().sortBy("importedAt"),
+    [projectId]
+  );
+  return { datasets, loading: datasets === undefined };
+}
+
 /** 项目统计（数据点数 / 引用的来源数），随数据实时更新 */
 export function useProjectStats(projectId: string) {
   return useLiveQuery(async () => {

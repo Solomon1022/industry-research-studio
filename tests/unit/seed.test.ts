@@ -3,10 +3,23 @@
  */
 
 import { describe, expect, it } from "vitest";
+import "fake-indexeddb/auto";
+import { ensureSeedData, ResearchDB } from "@/lib/db";
 import { seedDataPoints, seedProject, seedSources } from "@/lib/seed-data";
 import { canExport, validateProject } from "@/lib/validation";
 
 describe("seed 数据集", () => {
+  it("并发初始化不会重复写入或产生主键冲突", async () => {
+    const database = new ResearchDB();
+    const results = await Promise.all([ensureSeedData(database), ensureSeedData(database)]);
+    expect(results.filter(Boolean)).toHaveLength(1);
+    expect(await database.projects.count()).toBe(1);
+    expect(await database.sources.count()).toBe(seedSources.length);
+    expect(await database.dataPoints.count()).toBe(seedDataPoints.length);
+    database.close();
+    await database.delete();
+  });
+
   it("项目启用六维全集", () => {
     expect(seedProject.dimensions).toHaveLength(6);
   });
